@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "main.h"
 
 /**
 * main - causes an infinite loop
@@ -22,4 +23,3 @@ int main(void)
 
 	return (0);
 }
-
