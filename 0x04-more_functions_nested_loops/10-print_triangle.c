@@ -1,26 +1,33 @@
 #include "main.h"
 
 /**
- * print_triangle - prints a triangle
- *@size: size of the triangle
+ * print_triangle - prints left-justified right triangle using number of #
  *
- * Return: Always 0.
+ * @size: input dimentsions of the base and height of triangle
+ *
  */
 
 void print_triangle(int size)
 {
-	int x;
-	int y;
+	int x, y, z;
 
-	for (x = 1; x <= size; x++)
+	if (size > 0)
 	{
-		for (y = 1; y <= size; y++)
+		for (x = 1; x <= size; x++)
 		{
-			if (y <= size - x)
-				_putchar(' ');
-			else
-				_putchar('#');
+			for (y = 1; y <= (size - x); y++)
+			{
+				_putchar(32);
+			}
+			for (z = 1; z <= x; z++)
+			{
+				_putchar(35);
+			}
+			_putchar(10);
 		}
-		_putchar('\n');
+	}
+	else
+	{
+		_putchar(10);
 	}
 }
