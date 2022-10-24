@@ -1,48 +1,46 @@
-#include "lists.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include "lists.h"
 
 /**
- * _strlen - finds the length of a string
- * @str: string to be searched
- *
- * Return: length of the string
- */
-unsigned int _strlen(char *str)
-{
-	unsigned int i;
-
-	for (i = 0; str[i]; i++)
-		;
-	return (i);
-}
-/**
- * add_node - add a node to the beginning of a linked list
- * @head: double pointer to the head of a linked list
- * @str: string to add to the new node
- *
- * Return: pointer to the new node .
+ * add_node - Adds a new node at the beginning of the list
+ * @head: pointer to a pointer to a linked list
+ * @str: Pointer for a string input
+ * Return: the address of the new element, or NULL if it failed
  */
 
 list_t *add_node(list_t **head, const char *str)
 {
-	list_t *newnode;
+	list_t *new_node;
 
-	if (str == NULL)
+	new_node = malloc(sizeof(list_t));
+
+	if (new_node == NULL)
 		return (NULL);
 
-	newnode = (list_t *)malloc(sizeof(list_t));
-	if (newnode == NULL)
-		return (NULL);
+	new_node->str = strdup(str);
+	new_node->len = _strlen(str);
 
-	newnode->str = strdup(str);
-	if (newnode->str == NULL)
+	new_node->next = *head;
+	*head = new_node;
+	return (new_node);
+}
+
+/**
+ * _strlen - returns the length of the string
+ *@s: string being counted
+ * Return: Always 0.
+ */
+
+int _strlen(const char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
 	{
-		free(newnode);
-		return (NULL);
+		i++;
 	}
-	newnode->len = _strlen(newnode->str);
-	newnode->next = *head;
-	*head = newnode;
-	return (newnode);
+	return (i);
 }
